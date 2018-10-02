@@ -1,0 +1,30 @@
+version: '3.7'
+
+networks:
+  h2-network:
+
+services:
+  frontend:
+    image: 'haproxy:1.8.14'
+    container_name: 'h2-frontend'
+    networks:
+      - h2-network
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - './haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro'
+      - './cert-combined.pem:/usr/local/etc/haproxy/certs/cert-combined.pem:ro'
+
+  backend:
+    image: 'nginx:1.15.4'
+    container_name: 'h2-backend'
+    networks:
+      - h2-network
+    ports:
+      - 81:81
+      - 82:82
+    volumes:
+      - './nginx.conf:/etc/nginx/nginx.conf:ro'
+      - './server.nginx:/etc/nginx/conf.d/server.conf:ro'
+      - './htdocs/:/www/data/'
