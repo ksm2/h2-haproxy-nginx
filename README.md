@@ -37,4 +37,4 @@ And you see it works!
               (padlen=0)
               ; First response header
 
-**Note:** Because of a [bug in Nginx](https://trac.nginx.org/nginx/ticket/1549#ticket) the push does not currently work in the browser.
+**Note:** Because of a [bug in Nginx](https://trac.nginx.org/nginx/ticket/1549#ticket) the Server Push did not correctly work in the browser for Nginx < 15.1.
